@@ -8,6 +8,7 @@ body {
   --custom-color: #000000;
   --custom-color-brand: #FFEB8A;
   --custom-color-secondary: #666;
+  --custom-border: 1px solid lightgray;
   --custom-border-radius: 5px;
   --custom-spacing: 5px;
 
@@ -65,7 +66,7 @@ input {
   width: 100%;
   border-radius: 5px;
   border: var(--custom-border);
-  padding: 12px;
+  padding: 15px 15px;
   font-size: 0.9rem;
 }
 
@@ -74,12 +75,13 @@ textarea {
   font-family: inherit;
   border-radius: 5px;
   border: var(--custom-border);
-  padding: 12px;
+  padding: 15px 15px;
   font-size: 0.9rem;
 }
 
 input[disabled] {
   color: var(--custom-color-secondary);
+  cursor:not-allowed;
 }
 
 /* Utils */
