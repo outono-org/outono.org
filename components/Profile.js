@@ -67,7 +67,7 @@ export default function Profile({ session, username }) {
 
   return (
     <>
-    <div style={{ height: '16rem', borderRadius: '0.5em', backgroundColor: '#A39797'}}></div>
+    <div style={{ height: '16rem', borderRadius: '0.5em', backgroundColor: 'rgb(185 175 249)'}}></div>
     <div style={{ position: 'relative', top: '-60px', left: '25px', alignItems: 'flex-end' }} className='flex'>
         <Avatar
       url={avatar_url}
@@ -79,7 +79,7 @@ export default function Profile({ session, username }) {
     </div>
 
     <div>
-        <div style={{ fontWeight: '700', fontSize: '1.1rem'}}>Profile</div>
+        <div style={{ fontWeight: '700', fontSize: '1.1rem'}}>Perfil</div>
         <div style={{ backgroundColor: '#eaeaea', display: 'block', height: '1px', width: '100%', margin: '16px 0px' }} />
     </div>
       

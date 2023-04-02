@@ -26,6 +26,10 @@ body,
   overflow-x: hidden;
 }
 
+p, div {
+  line-height: 1.4;
+}
+
 
 /* Grid */
 
