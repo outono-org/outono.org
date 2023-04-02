@@ -150,6 +150,17 @@ button.primary,
   border: none;
 }
 
+/* User Card */
+.userCard {
+  padding: 20px;
+  cursor: pointer;
+  transition: ease-in-out 0.5s;
+}
+
+.userCard:hover {
+  background-color: rgb(234, 234, 234);
+}
+
 body {
   background: #A39797;
   font-family: Helvetica, Arial, Sans-Serif;

@@ -12,26 +12,11 @@ export default function Profile({ session, username }) {
   const [biography, setBiography] = useState(null)
   const [avatar_url, setAvatarUrl] = useState(null)
 
-  const [users, setUsers] = useState(null)
-
   useEffect(() => {
     if (username) {
         getProfile(username);
-        //getUsers()
       }
   }, [username])
-
-/*   async function getUsers() {
-    const { data, error } = await supabase
-  .from('profiles')
-  .select()
-
-  if (data) {
-    console.log(data)
-    setUsers(data)
-    console.log(users)
-  }
-  } */
 
   async function getProfile(username) {
     try {
@@ -84,8 +69,8 @@ export default function Profile({ session, username }) {
     </div>
       
       <div>
-        <h2>About</h2>
-        <div>
+        <h2>Sobre</h2>
+        <div style={{ whiteSpace: 'pre-line' }}>
         {biography || ''}
         </div>
       </div>
