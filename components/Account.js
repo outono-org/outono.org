@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
-import Avatar from './Avatar'
+import AvatarUpload from './AvatarUpload'
 
 export default function Account({ session }) {
   const supabase = useSupabaseClient()
@@ -69,7 +69,7 @@ export default function Account({ session }) {
 
   return (
     <div className="form-widget">
-        <Avatar
+        <AvatarUpload
       uid={user.id}
       url={avatar_url}
       size={120}
