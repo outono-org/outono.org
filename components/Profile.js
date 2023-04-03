@@ -53,14 +53,19 @@ export default function Profile({ session, username }) {
   return (
     <>
     <div style={{ height: '16rem', borderRadius: '0.5em', backgroundColor: 'rgb(185 175 249)'}}></div>
-    <div style={{ position: 'relative', top: '-60px', left: '25px', alignItems: 'flex-end' }} className='flex'>
+    <div style={{ position: 'relative', top: '-60px', left: '25px', alignItems: 'flex-end', justifyContent: 'space-between' }} className='flex'>
+      <div className={'flex'} style={{ alignItems: 'end' }}>
         <Avatar
       url={avatar_url}
       size={120}
     />
-    <div>
-        <h2 style={{ marginLeft: '7px' }}>{full_name || username || ''}</h2>
-      </div>
+    <h2 style={{ marginLeft: '7px' }}>{full_name || username || ''}</h2>
+    </div>
+    
+      <div style={{ position: 'relative', right: '25px'}}>
+      <div><button className='secondary'>Ajudou-me (3)</button></div>
+      
+    </div>
     </div>
 
     <div>
