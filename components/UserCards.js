@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Avatar from './Avatar'
+import Link from 'next/link'
 
 export default function UserCards() {
     const supabase = useSupabaseClient()
@@ -8,7 +9,7 @@ export default function UserCards() {
 
     function userCardClick(username) {
         console.log(username)
-        window.location.href = `/${username}`
+        //window.location.href = `/${username}`
     }
 
     useEffect(() => {
@@ -29,6 +30,7 @@ export default function UserCards() {
         <>
         {users && users.map(({ full_name, username, avatar_url }) => {
             return (
+                <Link href={`${username}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className='userCard flex column' key={username} onClick={()=> userCardClick(username)}>
                     <div style={{ fontWeight: '600' }}>
                     {full_name}
@@ -37,6 +39,7 @@ export default function UserCards() {
                     {`@${username}`.toLowerCase()}
                     </div>
                 </div>
+                </Link>
             )
           })}
         </>
