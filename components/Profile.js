@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import Avatar from './Avatar'
+import Link from 'next/link'
 
 export default function Profile({ session, username }) {
   const supabase = useSupabaseClient()
   const user = useUser()
   const [loading, setLoading] = useState(true)
   //const [username, setUsername] = useState(null)
+  const [id, setId] = useState(null)
   const [full_name, setFullName] = useState(null)
   const [website, setWebsite] = useState(null)
   const [biography, setBiography] = useState(null)
@@ -27,7 +29,7 @@ export default function Profile({ session, username }) {
 
       let { data, error, status } = await supabase
         .from('profiles')
-        .select(`username, full_name, website, biography, avatar_url`)
+        .select(`id, username, full_name, website, biography, avatar_url`)
         .eq('username', username)
         .single()
 
@@ -37,6 +39,7 @@ export default function Profile({ session, username }) {
 
       if (data) {
         //setUsername(data.username)
+        setId(data.id)
         setFullName(data.full_name)
         setWebsite(data.website)
         setBiography(data.biography)
@@ -63,7 +66,13 @@ export default function Profile({ session, username }) {
     </div>
     
       <div style={{ position: 'relative', right: '25px'}}>
-      <div><button className='secondary'>Ajudou-me (3)</button></div>
+      <div>
+      { user.id == id ? (
+        <p>Recomendado por <Link href="/malikpiara"><span style={{ fontWeight: '600' }}>Malik</span></Link> e outros</p>
+      ) : (
+        <button className='secondary'>Recomendar</button>
+      ) }
+      </div>
       
     </div>
     </div>
