@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
-import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
-import Avatar from './Avatar'
-import Link from 'next/link'
+import { useState, useEffect } from 'react';
+import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
+import Avatar from './Avatar';
+import Link from 'next/link';
 
 export default function Profile({ session, username }) {
   const supabase = useSupabaseClient()
