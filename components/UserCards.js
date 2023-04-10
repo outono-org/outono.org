@@ -8,7 +8,6 @@ export default function UserCards() {
     const [users, setUsers] = useState(null)
 
     function userCardClick(username) {
-        console.log(username)
         //window.location.href = `/${username}`
     }
 
@@ -30,7 +29,7 @@ export default function UserCards() {
         <>
         {users && users.map(({ full_name, username, avatar_url }) => {
             return (
-                <Link href={`${username}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                <Link href={`${username}`} key={username} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className='userCard flex column' key={username} onClick={()=> userCardClick(username)}>
                     <div style={{ fontWeight: '600' }}>
                     {full_name}

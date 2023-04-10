@@ -1,12 +1,21 @@
 import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import React from 'react'
+import { useSession } from '@supabase/auth-helpers-react'
+import Account from '../components/Account'
 
-export default function ProtectedPage({ user, data }) {
+const Settings = () => {
+  const session = useSession();
+
   return (
     <>
-      <h1>Hello World</h1>
+        <div className="container" style={{ borderRadius: '5px', backgroundColor: 'white', padding: '2rem', margin: '60px auto' }}>
+          <h2>Settings</h2>
+          <p style={{ lineHeight: '1.4', color: 'gray' }}>Obrigado por estares aqui. Ainda estou a avaliar os próximos passos e em breve voltarei a dar um toque.</p>
+          {session ? <Account session={session} /> : <p>Loading...</p>}
+        </div>
     </>
-  )
-}
+  );
+};
 
 export const getServerSideProps = async (ctx) => {
   // Create authenticated Supabase Client
@@ -24,14 +33,6 @@ export const getServerSideProps = async (ctx) => {
       },
     }
 
-    if (session)
-    return {
-      redirect: {
-        destination: '/account',
-        permanent: false,
-      },
-    }
-
   // Run queries with RLS on the server
   const { data } = await supabase.from('users').select('*')
 
@@ -42,4 +43,6 @@ export const getServerSideProps = async (ctx) => {
       data: data ?? [],
     },
   }
-}
+};
+
+export default Settings;

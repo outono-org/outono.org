@@ -16,6 +16,7 @@ export default function Account({ session }) {
   }, [session])
 
   async function getProfile() {
+    if (!user) return; // ensures that the getProfile function does not execute if the user object is null.
     try {
       setLoading(true)
 
