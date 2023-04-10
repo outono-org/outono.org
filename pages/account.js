@@ -1,4 +1,4 @@
-import { createServerSupabaseClient } from '@supabase/auth-helpers-nextjs'
+import { withAuth } from '../utils/withAuth';
 import React from 'react'
 import { useSession } from '@supabase/auth-helpers-react'
 import Account from '../components/Account'
@@ -17,32 +17,5 @@ const Settings = () => {
   );
 };
 
-export const getServerSideProps = async (ctx) => {
-  // Create authenticated Supabase Client
-  const supabase = createServerSupabaseClient(ctx)
-  // Check if we have a session
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
-  if (!session)
-    return {
-      redirect: {
-        destination: '/signin',
-        permanent: false,
-      },
-    }
-
-  // Run queries with RLS on the server
-  const { data } = await supabase.from('users').select('*')
-
-  return {
-    props: {
-      initialSession: session,
-      user: session.user,
-      data: data ?? [],
-    },
-  }
-};
-
+export const getServerSideProps = withAuth();
 export default Settings;
