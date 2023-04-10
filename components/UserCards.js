@@ -27,7 +27,8 @@ export default function UserCards() {
 
     return (
         <>
-        {users && users.map(({ full_name, username, avatar_url }) => {
+        {users && users.map(({ full_name, username, biography, avatar_url }) => {
+          if (username && biography)
             return (
                 <Link href={`${username}`} key={username} style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className='userCard flex column' key={username} onClick={()=> userCardClick(username)}>
