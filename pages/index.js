@@ -16,6 +16,15 @@ export async function getServerSideProps(ctx) {
     data: { session },
   } = await supabase.auth.getSession();
 
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/account',
+        permanent: false,
+      },
+    };
+  };
+
   if (session) {
     return {
       redirect: {
@@ -23,7 +32,7 @@ export async function getServerSideProps(ctx) {
         permanent: false,
       },
     };
-  }
+  };
 
   return {
     props: {},

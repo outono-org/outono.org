@@ -47,9 +47,9 @@ const Home = () => {
     <Head>
       <title>{ user } | Outono</title>
     </Head>
-        <div className='flex' style={{height: '100%'}}>
+        <div className='globalContainer'>
         <Navigation/>
-        <main className="container" style={{ height: '100vh', backgroundColor: 'white', padding: '2rem', margin: '0px auto', float: 'right', overflowY: 'auto' }}>
+        <main className="container" style={{ height: '100vh', backgroundColor: 'white', padding: '2rem', overflowY: 'auto' }}>
         
         <CSSTransition
         in={isVisible}

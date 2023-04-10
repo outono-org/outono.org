@@ -1,0 +1,12 @@
+.navigation {
+    background-color: white;
+    width: 24rem;
+    border-right: 1px solid #eaeaea;
+    overflow: hidden scroll;
+}
+
+@media only screen and (width < 600px) {
+    .navigation {
+        display: none;
+    }
+}
