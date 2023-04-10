@@ -63,6 +63,7 @@ export default function Profile({ session, username }) {
       size={120}
     />
     <h2 style={{ marginLeft: '7px' }}>{full_name || username || ''}</h2>
+    
     </div>
     
       <div style={{ position: 'relative', right: '25px'}}>
@@ -70,7 +71,7 @@ export default function Profile({ session, username }) {
       { user.id == id ? (
         <p>Recomendado por <Link href="/malikpiara"><span style={{ fontWeight: '600' }}>Malik</span></Link> e outros</p>
       ) : (
-        <button className='secondary'>Recomendar</button>
+        <button className='secondary'style={{ fontFamily: 'inherit', fontWeight: '400', marginBottom: '-5px'}}>Recomendar</button>
       ) }
       </div>
       
@@ -91,11 +92,11 @@ export default function Profile({ session, username }) {
 
     <br/>
 
-      <a href="/">
+      {/* <a href="/">
         <span className="fixed bottom-10 right-10 rounded-full border bg-black border-gray-800 hover:border-white w-12 h-12 flex justify-center items-center transition-all">
             <svg className="h-4 w-4 text-white" viewBox="0 0 24 24" width="24" height="24" stroke="#A39797" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" shapeRendering="geometricPrecision"><path d="M17 3a2.828 2.828 0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
         </span>
-    </a>
+    </a> */}
     </>
   )
 }

@@ -57,7 +57,24 @@ const Home = () => {
         classNames="page-transition"
         unmountOnExit
         >
+          <>
           <Profile session={session} username={user} />
+          <h2>Contéudo Recomendado</h2>
+          <article className='testLinkCard'>
+            <h3>How a designer makes background patterns to push her creativity</h3>
+            <p>We came across Namika Hamasaki's work on her Dribbble portfolio while collecting inspiration from daily UI challenges. Designers are attracted to daily UI challenges because they provide a creative exercise without the constraints of client or management expectations. </p>
+          </article>
+          <br/>
+          <article className='testLinkCard'>
+            <h3>Using higher-order functions to build per-page layouts in Next.js</h3>
+            <p> We can instead use a higher-order function to build our page layouts. A higher-order function is a function that either takes in functions as arguments or returns them as a result. We can create a higher-order function that takes a say, a layout name, and returns a function similar to getLayout that wraps our component. </p>
+          </article>
+          <br/>
+          <article className='testLinkCard'>
+            <h3>The True Value of Your Time</h3>
+            <p>practicetrumpstheory.com</p>
+          </article>
+          </>
         </CSSTransition>
         </main>
         </div>

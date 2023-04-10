@@ -36,6 +36,10 @@ body {
   height: 100%;
 }
 
+h2 {
+  font-weight: 700;
+}
+
 p, div {
   line-height: 1.4;
 }
@@ -232,3 +236,21 @@ button:hover {
   transition: opacity 300ms ease-out, transform 300ms ease-out;
 }
 
+/* Tests */
+
+.testLinkCard {
+  border-radius: 0.5rem;
+  padding: 0.3rem 1.8rem;
+  background-color: rgba(13,12,34,0.05);
+  cursor: pointer;
+  transition: ease-in-out 0.6s;
+}
+
+.testLinkCard:hover {
+  background-color: rgba(13,12,34,0.1);
+}
+
+.testLinkCard h3 {
+  font-weight: 500;
+  margin-bottom: 0;
+}
