@@ -67,13 +67,16 @@ export default function Profile({ session, username }) {
     </div>
     
       <div style={{ position: 'relative', right: '25px'}}>
-      <div>
-      { user.id == id ? (
-        <p>Recomendado por <Link href="/malikpiara"><span style={{ fontWeight: '600' }}>Malik</span></Link> e outros</p>
-      ) : (
-        <button className='secondary'style={{ fontFamily: 'inherit', fontWeight: '400', marginBottom: '-5px'}}>Recomendar</button>
-      ) }
-      </div>
+        { website ? (
+          <div>
+            { website.startsWith("https") ? (
+              <Link href={`${website}`} target="_blank"><button className='secondary'style={{ fontFamily: 'inherit', fontWeight: '400', marginBottom: '-5px'}}>Website</button></Link>
+            ) : (
+              <Link href={`https://${website}`} target="_blank"><button className='secondary'style={{ fontFamily: 'inherit', fontWeight: '400', marginBottom: '-5px'}}>Website</button></Link>
+            )}
+        </div>
+        ) : null }
+      
       
     </div>
     </div>
