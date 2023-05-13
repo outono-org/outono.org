@@ -81,10 +81,10 @@ export default function Profile({ session, username }) {
     </div>
     </div>
 
-    <div>
+    {/* <div>
         <div style={{ fontWeight: '700', fontSize: '1.1rem'}}>Perfil</div>
         <div style={{ backgroundColor: '#eaeaea', display: 'block', height: '1px', width: '100%', margin: '16px 0px' }} />
-    </div>
+    </div> */}
       
       <div>
         <h2>Sobre</h2>
