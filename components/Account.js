@@ -93,8 +93,20 @@ export default function Account({ session }) {
           onChange={(e) => setUsername(e.target.value)}
         />
       </div>
+      
       <div>
-        <label htmlFor="website">Website</label>
+        <label htmlFor="biography">Biografia</label>
+        <textarea
+          id="biography"
+          placeholder='O que é que fazes profissionalmente? Quais são alguns projetos dos quais te orgulhas? O que é que gostas de criar no teu tempo livre? Por favor utiliza a primeira pessoa.'
+          value={biography || ''}
+          onChange={(e) => setBiography(e.target.value)}
+        />
+      </div>
+
+      <h2>Na Web</h2>
+      <div>
+        <label htmlFor="website">Website Pessoal</label>
         <input
           id="website"
           type="website"
@@ -103,12 +115,40 @@ export default function Account({ session }) {
         />
       </div>
       <div>
-        <label htmlFor="biography">Biography</label>
-        <textarea
-          id="biography"
-          placeholder='Enter a short bio about yourself...'
-          value={biography || ''}
-          onChange={(e) => setBiography(e.target.value)}
+        <label htmlFor="website">GitHub</label>
+        <input
+          id="website"
+          type="website"
+          value={website || ''}
+          onChange={(e) => setWebsite(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="website">Twitter</label>
+        <input
+          id="website"
+          type="website"
+          value={website || ''}
+          onChange={(e) => setWebsite(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="website">Instagram</label>
+        <input
+          id="website"
+          type="website"
+          value={website || ''}
+          onChange={(e) => setWebsite(e.target.value)}
+        />
+      </div>
+
+      <div>
+        <label htmlFor="website">LinkedIn</label>
+        <input
+          id="website"
+          type="website"
+          value={website || ''}
+          onChange={(e) => setWebsite(e.target.value)}
         />
       </div>
 
