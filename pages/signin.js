@@ -26,7 +26,8 @@ const Entrar = () => {
         <div className="container" style={{ borderRadius: '5px', padding: '2rem', backgroundColor: 'white', maxWidth: '480px', margin: '60px auto' }}>
         <img src="https://user-images.githubusercontent.com/6923650/229231388-8116e682-a217-40d1-a953-4afb544d32f4.jpg" width="45"/>
         <h2>Entra em Outono.org</h2>
-        <p style={{ color: 'gray' }}>Somos empreendedores, programadores e designers cometidos a partilhar conhecimento com uma nova geração.</p>
+        <p style={{ color: 'gray' }}>Somos programadores e designers cometidos a aprender e a partilhar conhecimento.</p>
+        <p style={{ color: 'gray' }}>Nesta plataforma podes encontrar pessoas que partilham os teus interesses e com quem podes colaborar.</p>
 
         {loading ? (
           'Loading...'

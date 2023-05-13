@@ -10,7 +10,7 @@ const Settings = () => {
     <>
         <div className="container" style={{ borderRadius: '5px', backgroundColor: 'white', padding: '2rem', margin: '60px auto' }}>
           <h2>Settings</h2>
-          <p style={{ lineHeight: '1.4', color: 'gray' }}>Obrigado por estares aqui. Ainda estou a avaliar os próximos passos e em breve voltarei a dar um toque.</p>
+          <p style={{ lineHeight: '1.4', color: 'gray' }}>O acesso à plataforma ainda é limitado e por convite mas já podes prencher o teu perfil e criar um username. Até logo.</p>
           {session ? <Account session={session} /> : <p>Loading...</p>}
         </div>
     </>
