@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 import AvatarUpload from './AvatarUpload'
+import { getOnlineProfiles } from '../utils/getOnlineProfiles'
 
 export default function Account({ session }) {
   const supabase = useSupabaseClient()
@@ -10,7 +11,6 @@ export default function Account({ session }) {
   const [website, setWebsite] = useState(null)
   const [biography, setBiography] = useState(null)
   const [avatar_url, setAvatarUrl] = useState(null)
-
   const [github, setGitHub] = useState(null)
   const [dribbble, setDribbble] = useState(null)
   const [twitter, setTwitter] = useState(null)
@@ -19,49 +19,17 @@ export default function Account({ session }) {
 
   useEffect(() => {
     getProfile()
-    getSocialLinks()
+    const fetchOnlineProfiles = async () => {
+      const onlineProfiles = await getOnlineProfiles(supabase, user.id);
+      setGitHub(onlineProfiles.github);
+      setDribbble(onlineProfiles.dribbble);
+      setTwitter(onlineProfiles.twitter);
+      setInstagram(onlineProfiles.instagram);
+      setLinkedin(onlineProfiles.linkedin);
+    }
+    fetchOnlineProfiles();
   }, [session])
 
-  async function getSocialLinks() {
-    try {
-      let { data, error, status } = await supabase
-        .from('user_online_profiles')
-        .select(`platform, url`)
-        .eq('profile_id', user.id)
-
-        if (error && status !== 406) {
-          throw error
-        }
-
-        if (data) {
-          data.forEach(item => {
-            switch(item.platform) {
-              case 'github':
-                setGitHub(item.url);
-                break;
-              case 'dribbble':
-                setDribbble(item.url);
-                break;
-              case 'twitter':
-                setTwitter(item.url);
-                break;
-              case 'instagram':
-                setInstagram(item.url);
-                break;
-              case 'linkedin':
-                setLinkedin(item.url);
-                break;
-            }
-          })
-        }
-        
-      } catch (error) {
-        alert('Error loading social media data!')
-        console.log(error)
-      } finally {
-        setLoading(false)
-      }
-  }
 
   async function getProfile() {
     if (!user) return; // ensures that the getProfile function does not execute if the user object is null.
