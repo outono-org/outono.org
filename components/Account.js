@@ -11,9 +11,57 @@ export default function Account({ session }) {
   const [biography, setBiography] = useState(null)
   const [avatar_url, setAvatarUrl] = useState(null)
 
+  const [github, setGitHub] = useState(null)
+  const [dribbble, setDribbble] = useState(null)
+  const [twitter, setTwitter] = useState(null)
+  const [instagram, setInstagram] = useState(null)
+  const [linkedin, setLinkedin] = useState(null)
+
   useEffect(() => {
     getProfile()
+    getSocialLinks()
   }, [session])
+
+  async function getSocialLinks() {
+    try {
+      let { data, error, status } = await supabase
+        .from('user_online_profiles')
+        .select(`platform, url`)
+        .eq('profile_id', user.id)
+
+        if (error && status !== 406) {
+          throw error
+        }
+
+        if (data) {
+          data.forEach(item => {
+            switch(item.platform) {
+              case 'github':
+                setGitHub(item.url);
+                break;
+              case 'dribbble':
+                setDribbble(item.url);
+                break;
+              case 'twitter':
+                setTwitter(item.url);
+                break;
+              case 'instagram':
+                setInstagram(item.url);
+                break;
+              case 'linkedin':
+                setLinkedin(item.url);
+                break;
+            }
+          })
+        }
+        
+      } catch (error) {
+        alert('Error loading social media data!')
+        console.log(error)
+      } finally {
+        setLoading(false)
+      }
+  }
 
   async function getProfile() {
     if (!user) return; // ensures that the getProfile function does not execute if the user object is null.
@@ -44,7 +92,7 @@ export default function Account({ session }) {
     }
   }
 
-  async function updateProfile({ username, website, biography, avatar_url }) {
+  async function updateProfile({ username, website, biography, avatar_url, online_profiles }) {
     try {
       setLoading(true)
 
@@ -59,6 +107,21 @@ export default function Account({ session }) {
 
       let { error } = await supabase.from('profiles').upsert(updates)
       if (error) throw error
+
+      for(let item of online_profiles) {
+        if (item.url) {
+          const socialLinksUpdates = {
+            profile_id: user.id,
+            platform: item.platform,
+            url: item.url
+          }
+    
+          let { error } = await supabase.from('user_online_profiles').upsert(socialLinksUpdates)
+          
+          if (error) throw error
+        }
+      }
+
       alert('Profile updated!')
     } catch (error) {
       alert('Error updating the data!')
@@ -117,45 +180,66 @@ export default function Account({ session }) {
       <div>
         <label htmlFor="website">GitHub</label>
         <input
-          id="website"
+          id="github"
+          type="github"
+          value={github || ''}
+          onChange={(e) => setGitHub(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="website">Dribbble</label>
+        <input
+          id="dribbble"
           type="website"
-          value={website || ''}
-          onChange={(e) => setWebsite(e.target.value)}
+          value={dribbble || ''}
+          onChange={(e) => setDribbble(e.target.value)}
         />
       </div>
       <div>
         <label htmlFor="website">Twitter</label>
         <input
-          id="website"
+          id="twitter"
           type="website"
-          value={website || ''}
-          onChange={(e) => setWebsite(e.target.value)}
+          value={twitter || ''}
+          onChange={(e) => setTwitter(e.target.value)}
         />
       </div>
       <div>
         <label htmlFor="website">Instagram</label>
         <input
-          id="website"
+          id="instagram"
           type="website"
-          value={website || ''}
-          onChange={(e) => setWebsite(e.target.value)}
+          value={instagram || ''}
+          onChange={(e) => setInstagram(e.target.value)}
         />
       </div>
 
       <div>
         <label htmlFor="website">LinkedIn</label>
         <input
-          id="website"
+          id="linkedin"
           type="website"
-          value={website || ''}
-          onChange={(e) => setWebsite(e.target.value)}
+          value={linkedin || ''}
+          onChange={(e) => setLinkedin(e.target.value)}
         />
       </div>
 
       <div>
         <button
           className="button primary block"
-          onClick={() => updateProfile({ username, website, biography, avatar_url })}
+          onClick={() => updateProfile({ 
+            username,
+            website,
+            biography,
+            avatar_url,
+            online_profiles: [
+              {platform: 'github', url: github},
+              {platform: 'dribbble', url: dribbble},
+              {platform: 'twitter', url: twitter},
+              {platform: 'instagram', url: instagram},
+              {platform: 'linkedin', url: linkedin},
+            ]
+          })}
           disabled={loading}
         >
           {loading ? 'Loading ...' : 'Update'}
