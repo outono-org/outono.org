@@ -62,7 +62,19 @@ export default function Profile({ session, username }) {
       url={avatar_url}
       size={120}
     />
-    <h2 style={{ marginLeft: '7px' }}>{full_name || username || ''}</h2>
+    <div style={{marginLeft:'7px', marginTop:'7px'}}>
+      <div>
+        <h2 style={{margin:'10px 0 0 0'}}>{full_name || username || ''}</h2>
+      </div>
+      <div>
+        <img src="linkedin.svg" alt="linkedin" style={{height:'20px',width:'20px', marginRight:'7px'}}/>
+        <img src="github.svg" alt="github" style={{height:'20px',width:'20px', marginRight:'7px'}}/>
+        <img src="dribble.svg" alt="dribble" style={{height:'20px',width:'20px', marginRight:'7px'}}/> 
+        <img src="instagram.svg" alt="instagram" style={{height:'20px',width:'20px', marginRight:'7px'}}/>
+        <img src="twitter.svg" alt="twitter" style={{height:'20px',width:'20px'}}/>
+      </div>
+    </div>
+    
     
     </div>
     
