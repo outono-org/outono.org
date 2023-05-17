@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 import Avatar from './Avatar';
 import Link from 'next/link';
+import { getOnlineProfiles } from '../utils/getOnlineProfiles'
 
 export default function Profile({ session, username }) {
   const supabase = useSupabaseClient()
@@ -13,12 +14,31 @@ export default function Profile({ session, username }) {
   const [website, setWebsite] = useState(null)
   const [biography, setBiography] = useState(null)
   const [avatar_url, setAvatarUrl] = useState(null)
+  const [github, setGitHub] = useState(null)
+  const [dribble, setDribble] = useState(null)
+  const [twitter, setTwitter] = useState(null)
+  const [instagram, setInstagram] = useState(null)
+  const [linkedin, setLinkedin] = useState(null)
+
 
   useEffect(() => {
     if (username) {
         getProfile(username);
       }
-  }, [username])
+    getSocialLinks(supabase, id).then(r => {
+      //fill each link to an variable
+      setGitHub(r?.github)
+      setDribble(r?.dribbble)
+      setInstagram(r?.instagram)
+      setLinkedin(r?.linkedin)
+      setTwitter(r?.twitter)
+    })
+  }, [username, github, dribble, linkedin, twitter, instagram])
+
+  async function getSocialLinks(supabase, id) { 
+    //fetch the promise that returns the social links from getOnlineProfiles
+    return await getOnlineProfiles(supabase,id)
+  }
 
   async function getProfile(username) {
     try {
@@ -53,6 +73,7 @@ export default function Profile({ session, username }) {
     }
   }
 
+
   return (
     <>
     <div style={{ height: '16rem', borderRadius: '0.5em', backgroundColor: 'rgb(185 175 249)'}}></div>
@@ -67,11 +88,11 @@ export default function Profile({ session, username }) {
         <h2 style={{margin:'10px 0 0 0'}}>{full_name || username || ''}</h2>
       </div>
       <div>
-        <img src="linkedin.svg" alt="linkedin" style={{height:'20px',width:'20px', marginRight:'7px'}}/>
-        <img src="github.svg" alt="github" style={{height:'20px',width:'20px', marginRight:'7px'}}/>
-        <img src="dribble.svg" alt="dribble" style={{height:'20px',width:'20px', marginRight:'7px'}}/> 
-        <img src="instagram.svg" alt="instagram" style={{height:'20px',width:'20px', marginRight:'7px'}}/>
-        <img src="twitter.svg" alt="twitter" style={{height:'20px',width:'20px'}}/>
+        <a href={linkedin}><img src="linkedin.svg" alt="linkedin" style={{height:'20px',width:'20px', marginRight:'7px'}}/></a>
+        <a href={github}><img src="github.svg" alt="github" style={{height:'20px',width:'20px', marginRight:'7px'}}/></a>
+        <a href={dribble}><img src="dribble.svg" alt="dribble" style={{height:'20px',width:'20px', marginRight:'7px'}}/></a>
+        <a href={instagram}><img src="instagram.svg" alt="instagram" style={{height:'20px',width:'20px', marginRight:'7px'}}/></a>
+        <a href={twitter}><img src="twitter.svg" alt="twitter" style={{height:'20px',width:'20px'}}/></a>
       </div>
     </div>
     
