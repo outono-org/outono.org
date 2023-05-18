@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react';
 import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react';
 import Avatar from './Avatar';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getOnlineProfiles } from '../utils/getOnlineProfiles'
+import SocialIcons from './SocialIcons';
 
 export default function Profile({ session, username }) {
   const supabase = useSupabaseClient()
@@ -14,31 +16,14 @@ export default function Profile({ session, username }) {
   const [website, setWebsite] = useState(null)
   const [biography, setBiography] = useState(null)
   const [avatar_url, setAvatarUrl] = useState(null)
-  const [github, setGitHub] = useState(null)
-  const [dribble, setDribble] = useState(null)
-  const [twitter, setTwitter] = useState(null)
-  const [instagram, setInstagram] = useState(null)
-  const [linkedin, setLinkedin] = useState(null)
 
 
   useEffect(() => {
     if (username) {
         getProfile(username);
       }
-    getSocialLinks(supabase, id).then(r => {
-      //fill each link to an variable
-      setGitHub(r?.github)
-      setDribble(r?.dribbble)
-      setInstagram(r?.instagram)
-      setLinkedin(r?.linkedin)
-      setTwitter(r?.twitter)
-    })
-  }, [username, github, dribble, linkedin, twitter, instagram])
+  }, [username])
 
-  async function getSocialLinks(supabase, id) { 
-    //fetch the promise that returns the social links from getOnlineProfiles
-    return await getOnlineProfiles(supabase,id)
-  }
 
   async function getProfile(username) {
     try {
@@ -88,29 +73,11 @@ export default function Profile({ session, username }) {
         <h2 style={{margin:'10px 0 0 0'}}>{full_name || username || ''}</h2>
       </div>
       <div>
-        <a href={linkedin}><img src="linkedin.svg" alt="linkedin" style={{height:'20px',width:'20px', marginRight:'7px'}}/></a>
-        <a href={github}><img src="github.svg" alt="github" style={{height:'20px',width:'20px', marginRight:'7px'}}/></a>
-        <a href={dribble}><img src="dribble.svg" alt="dribble" style={{height:'20px',width:'20px', marginRight:'7px'}}/></a>
-        <a href={instagram}><img src="instagram.svg" alt="instagram" style={{height:'20px',width:'20px', marginRight:'7px'}}/></a>
-        <a href={twitter}><img src="twitter.svg" alt="twitter" style={{height:'20px',width:'20px'}}/></a>
+        <SocialIcons userId={id} website={`${website}`} />
       </div>
     </div>
     
     
-    </div>
-    
-      <div style={{ position: 'relative', right: '25px'}}>
-        { website ? (
-          <div>
-            { website.startsWith("https") ? (
-              <Link href={`${website}`} target="_blank"><button className='secondary'style={{ fontFamily: 'inherit', fontWeight: '400', marginBottom: '-5px'}}>Website</button></Link>
-            ) : (
-              <Link href={`https://${website}`} target="_blank"><button className='secondary'style={{ fontFamily: 'inherit', fontWeight: '400', marginBottom: '-5px'}}>Website</button></Link>
-            )}
-        </div>
-        ) : null }
-      
-      
     </div>
     </div>
 
