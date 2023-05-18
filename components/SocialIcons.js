@@ -27,16 +27,30 @@ export default function SocialIcons({ userId, website }) {
     }, [userId])
   
     return (
-        <div>
-            <Link href={`${linkedin}`} target="_blank" aria-label="Linkedin Button"><Image src="linkedin.svg" alt="linkedin" width={20} height={20} style={{marginRight:'7px'}}/></Link>
-            <Link href={`${github}`} target="_blank" aria-label="Github Button"><Image src="github.svg" alt="github" width={20} height={20} style={{marginRight:'7px'}}/></Link>
-            <Link href={`${dribbble}`} target="_blank" aria-label="Dribbble Button"><Image src="dribble.svg" alt="dribble" width={20} height={20} style={{marginRight:'7px'}}/></Link>
-            <Link href={`${instagram}`} target="_blank" aria-label="Instagram Button"><Image src="instagram.svg" alt="instagram" width={20} height={20} style={{marginRight:'7px'}}/></Link>
-            <Link href={`${twitter}`} target="_blank" aria-label="Twitter Button"><Image src="twitter.svg" alt="twitter" width={20} height={20} style={{marginRight:'7px'}}/></Link>
+        <div style={{ position: 'absolute', right: '25px'}}>
+            <Link href={`${linkedin}`} target="_blank" aria-label="Linkedin Button">
+                <Image className="social-button" src="linkedin.svg" alt="linkedin" width={20} height={20} style={{marginRight:'7px'}}/>
+            </Link>
+            <Link href={`${github}`} target="_blank" aria-label="Github Button">
+                <Image className="social-button" src="github.svg" alt="github" width={20} height={20} style={{marginRight:'7px'}}/>
+            </Link>
+            <Link href={`${dribbble}`} target="_blank" aria-label="Dribbble Button">
+                <Image className="social-button" src="dribble.svg" alt="dribble" width={20} height={20} style={{marginRight:'7px'}}/>
+            </Link>
+            <Link href={`${instagram}`} target="_blank" aria-label="Instagram Button">
+                <Image className="social-button" src="instagram.svg" alt="instagram" width={20} height={20} style={{marginRight:'7px'}}/>
+            </Link>
+            <Link href={`${twitter}`} target="_blank" aria-label="Twitter Button">
+                <Image className="social-button" src="twitter.svg" alt="twitter" width={20} height={20} style={{marginRight:'7px'}}/>
+            </Link>
             { website.startsWith("https") ? (
-              <Link href={`${website}`} target="_blank" aria-label="Personal Website Button"><Image src="website.svg" alt="website" width={20} height={20} style={{marginRight:'7px'}}/></Link>
+              <Link href={`${website}`} target="_blank" aria-label="Personal Website Button">
+                <Image className="social-button" src="website.svg" alt="website" width={20} height={20} style={{marginRight:'7px'}}/>
+            </Link>
             ) : (
-              <Link href={`https://${website}`} target="_blank" aria-label="Personal Website Button"><Image src="website.svg" alt="website" width={20} height={20} style={{marginRight:'7px'}}/></Link>
+              <Link href={`https://${website}`} target="_blank" aria-label="Personal Website Button">
+                <Image className="social-button" src="website.svg" alt="website" width={20} height={20} style={{marginRight:'7px'}}/>
+            </Link>
             )}
         </div>
     )      

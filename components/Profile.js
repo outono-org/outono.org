@@ -72,13 +72,10 @@ export default function Profile({ session, username }) {
       <div>
         <h2 style={{margin:'10px 0 0 0'}}>{full_name || username || ''}</h2>
       </div>
-      <div>
-        <SocialIcons userId={id} website={`${website}`} />
-      </div>
     </div>
-    
-    
+       <SocialIcons userId={id} website={`${website}`} />
     </div>
+
     </div>
 
     {/* <div>

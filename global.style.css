@@ -254,3 +254,12 @@ button:hover {
   font-weight: 500;
   margin-bottom: 0;
 }
+
+.social-button{
+  transition: all 0.2s ease-in-out;
+}
+.social-button:hover{
+  transform: scale(1.1);
+  filter: invert(68%) sepia(6%) saturate(2523%) hue-rotate(207deg) brightness(107%) contrast(95%);
+}
+
