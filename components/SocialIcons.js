@@ -13,7 +13,7 @@ export default function SocialIcons({ userId, website }) {
     const [twitter, setTwitter] = useState(null)
     const [instagram, setInstagram] = useState(null)
     const [linkedin, setLinkedin] = useState(null)
-  
+
     useEffect(() => {
         if(userId){
             getOnlineProfiles(supabase, userId).then((result) => {
@@ -28,22 +28,22 @@ export default function SocialIcons({ userId, website }) {
   
     return (
         <div style={{ position: 'absolute', right: '25px'}}>
-            <Link href={`${linkedin}`} target="_blank" aria-label="Linkedin Button">
+            { linkedin && <Link href={`${linkedin}`} target="_blank" aria-label="Linkedin Button">
                 <Image className="social-button" src="linkedin.svg" alt="linkedin" width={20} height={20} style={{marginRight:'7px'}}/>
-            </Link>
-            <Link href={`${github}`} target="_blank" aria-label="Github Button">
+            </Link> }
+            { github && <Link href={`${github}`} target="_blank" aria-label="Github Button">
                 <Image className="social-button" src="github.svg" alt="github" width={20} height={20} style={{marginRight:'7px'}}/>
-            </Link>
-            <Link href={`${dribbble}`} target="_blank" aria-label="Dribbble Button">
+            </Link> }
+            { dribbble && <Link href={`${dribbble}`} target="_blank" aria-label="Dribbble Button">
                 <Image className="social-button" src="dribble.svg" alt="dribble" width={20} height={20} style={{marginRight:'7px'}}/>
-            </Link>
-            <Link href={`${instagram}`} target="_blank" aria-label="Instagram Button">
+            </Link> }
+            { instagram && <Link href={`${instagram}`} target="_blank" aria-label="Instagram Button">
                 <Image className="social-button" src="instagram.svg" alt="instagram" width={20} height={20} style={{marginRight:'7px'}}/>
-            </Link>
-            <Link href={`${twitter}`} target="_blank" aria-label="Twitter Button">
+            </Link> }
+            { twitter && <Link href={`${twitter}`} target="_blank" aria-label="Twitter Button">
                 <Image className="social-button" src="twitter.svg" alt="twitter" width={20} height={20} style={{marginRight:'7px'}}/>
-            </Link>
-            { website.startsWith("https") ? (
+            </Link> }
+            { website && website.startsWith("https") ? (
               <Link href={`${website}`} target="_blank" aria-label="Personal Website Button">
                 <Image className="social-button" src="website.svg" alt="website" width={20} height={20} style={{marginRight:'7px'}}/>
             </Link>
